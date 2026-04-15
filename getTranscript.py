@@ -6,12 +6,10 @@ import os
 
 
 def MakeTranscript(fileName, foldername): 
+    '''Makes transcript of wav files'''
     
-    def transcribe_multichannel(audio_file_path, elevenlabs):
-
-
-        os.chdir(foldername)
-    
+    def transcribe(audio_file_path, elevenlabs): #input wav files and api key
+        os.chdir(foldername) 
         with open(audio_file_path, 'rb') as audio_file:
             result = elevenlabs.speech_to_text.convert(
                 file=audio_file,
@@ -71,19 +69,11 @@ def MakeTranscript(fileName, foldername):
     )
 
 
-    bigtrans =[]
+    bigtrans =[] #create list of transcripts
     for file in fileName: 
-        result = transcribe_multichannel(file, elevenlabs)
+        result = transcribe(file, elevenlabs)
         filetranscript = create_conversation_transcript(result)
 
         bigtrans.append(filetranscript)
 
-
-
-
-
-
-
-
-        
     return (bigtrans)    
