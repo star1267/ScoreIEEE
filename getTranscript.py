@@ -2,16 +2,15 @@ from elevenlabs.client import ElevenLabs
 import yaml
 from dotenv import load_dotenv
 from io import BytesIO
+import os 
 
 
-def MakeTranscript(fileName): 
-    def transcribe_multichannel(audio_file_path):
-        with open ('secrets.yaml', 'r') as f:  #opens yaml with apikey
-            secrets = yaml.safe_load(f)
-        apikey = (secrets ['secrets'] ['elevenlabs']['apikey']) #read and store API key
-        elevenlabs = ElevenLabs( #tells 11labs what the api key is 
-            api_key= apikey,
-        )
+def MakeTranscript(fileName, foldername): 
+    
+    def transcribe_multichannel(audio_file_path, elevenlabs):
+
+
+        os.chdir(foldername)
     
         with open(audio_file_path, 'rb') as audio_file:
             result = elevenlabs.speech_to_text.convert(
@@ -61,9 +60,30 @@ def MakeTranscript(fileName):
             })
         return conversation
     # Format the output
-    result = transcribe_multichannel(fileName)
-    conversation = create_conversation_transcript(result)
 
 
 
-    return (conversation)
+    with open ('secrets.yaml', 'r') as f:  #opens yaml with apikey
+        secrets = yaml.safe_load(f)
+    apikey = (secrets ['secrets'] ['elevenlabs']['apikey']) #read and store API key
+    elevenlabs = ElevenLabs( #tells 11labs what the api key is 
+        api_key= apikey,
+    )
+
+
+    bigtrans =[]
+    for file in fileName: 
+        result = transcribe_multichannel(file, elevenlabs)
+        filetranscript = create_conversation_transcript(result)
+
+        bigtrans.append(filetranscript)
+
+
+
+
+
+
+
+
+        
+    return (bigtrans)    
