@@ -9,7 +9,7 @@ def extractResponses(IEEETranscript, partresponses):
         #print(partresponses[0][i])
 
     list1 = "The birch canoe slide on the smooth planks"
-    target=  "birch"
+    target=  "noe"
 
     if target in list1: 
         print ("YES")

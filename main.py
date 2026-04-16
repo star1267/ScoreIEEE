@@ -2,10 +2,12 @@ from getTranscript import MakeTranscript
 from storage_handler import write_json, readjson
 from CodeResponses import extractResponses
 from pathlib import Path 
+import yaml
+from elevenlabs.client import ElevenLabs
 
 if __name__ == "__main__":
     file = "prac" #Name of participants wav file
-    IEEEList = "IEEE.json"
+    IEEEList = "IEEESplit.json"
 
     def getTranscripts (file): 
         # Create transcript for participant audiofile 
@@ -23,8 +25,18 @@ if __name__ == "__main__":
         ... 
 
 
+    
 
-    Partpath = Path(f"{file}.wav")
+
+    with open ('secrets.yaml', 'r') as f:  #opens yaml with apikey
+        secrets = yaml.safe_load(f)
+    apikey = (secrets ['secrets'] ['elevenlabs']['apikey']) #read and store API key
+    elevenlabs = ElevenLabs( #tells 11labs what the api key is 
+        api_key= apikey,
+    )
+
+
+    Partpath = Path(f"{"Split"}.wav")
     if Partpath.exists(): 
         partresponses = readjson (f"{file}.json")
     else: 
@@ -36,6 +48,7 @@ if __name__ == "__main__":
         IEEETranscript = readjson (IEEEList)
     else: 
         IEEETranscript = getTranscripts(IEEEList)
+
 
 
     
