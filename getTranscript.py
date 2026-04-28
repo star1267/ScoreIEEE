@@ -69,12 +69,8 @@ def MakeTranscript(fileName, foldername):
         api_key= apikey,
     )
 
-
-    bigtrans =[] #create list of transcripts
     for file in fileName: 
         result = transcribe(file, elevenlabs)
         filetranscript = create_conversation_transcript(result)
 
-        bigtrans.append(filetranscript)
-
-    return (bigtrans)    
+    return (filetranscript)    

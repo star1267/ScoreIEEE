@@ -2,18 +2,19 @@ from storage_handler import write_json, readjson
 
 def extractResponses(IEEETranscript, partresponses): 
 
-    #for i in range(len(IEEETranscript)):
-        #print(IEEETranscript[i])
 
-    #for i in range(len(partresponses)):
-        #print(partresponses[0][i])
 
-    list1 = "The birch canoe slide on the smooth planks"
-    target=  "noe"
-
-    if target in list1: 
-        print ("YES")
-    else: 
-        print("DIDNT work")
+    justresponses = []
+    counter= 0
+    for response in partresponses: 
+        if response['speaker'] == 'speaker_0': 
+            justresponses.append(response['text'])
+            
+        for target in IEEETranscript: 
+            if target in response["text"]: 
+                counter = counter+1
+    print (counter)
 
     ... 
+
+
