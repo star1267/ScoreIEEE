@@ -33,9 +33,9 @@ if __name__ == "__main__":
     else: 
         IEEEsentences=downloadIEEE() #If IEEE file isnt in folder it will download the IEEE sentences and write a json
 
+
+
     IEEETargets = removearticles(IEEEsentences) #function to remove extra words from the IEEE sentences 
-    print(IEEETargets[0])
-    reordersentences(orderlist, IEEETargets)
 
     justresponses =extractResponses(partresponses, speakernum) #Extract just the participants responses 
     scoreResponses(IEEETargets, justresponses) 
