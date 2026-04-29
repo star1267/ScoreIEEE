@@ -3,7 +3,7 @@ import yaml
 from dotenv import load_dotenv
 from io import BytesIO
 import os 
-
+import string
 
 def MakeTranscript(fileName, foldername): 
     '''Makes transcript of wav files'''
@@ -28,8 +28,11 @@ def MakeTranscript(fileName, foldername):
             # Collect all words from all channels
                 for word in result.words or []: #cycle through all the words in the wav file
                     if word.type == 'word': #Add all the words to one big list with speaker name and time stamp
+                        text = word.text 
+                        translator = str.maketrans('', '', string.punctuation)
+                        clean_text = text.translate(translator)
                         all_words.append({ #Create a dict of all the words 
-                            'text': word.text,
+                            'text': clean_text,
                             'start': word.start,
                             'speaker_id': word.speaker_id,
                         })

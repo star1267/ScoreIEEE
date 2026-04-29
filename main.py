@@ -9,15 +9,12 @@ if __name__ == "__main__":
     IEEEList = "IEEEsentences.json" #Name of IEEE sentences json
     speakernum = 'speaker_0' #Which speaker does elevenlabs say the participant is? 
 
-    orderlist = [1,4,270,30,7]
-
     def getTranscripts (file, folderpath): 
         # Create transcript for participant audiofile 
         filelist = [f"{file}.wav"]
         partresponses = MakeTranscript (filelist, folderpath) #make transcript
         write_json(f"{file}.json", partresponses) #Write transcript to json
         ... 
-
 
     Partpath = Path(f"{file}.json") 
     folderpath = 'C:/Users/testarr/Documents/pythoncode/SpeechToText' #path to participant wav file 
@@ -34,11 +31,6 @@ if __name__ == "__main__":
         IEEEsentences=downloadIEEE() #If IEEE file isnt in folder it will download the IEEE sentences and write a json
 
 
-
     IEEETargets = removearticles(IEEEsentences) #function to remove extra words from the IEEE sentences 
-
     justresponses =extractResponses(partresponses, speakernum) #Extract just the participants responses 
     scoreResponses(IEEETargets, justresponses) 
-
-
-
