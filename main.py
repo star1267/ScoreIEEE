@@ -2,7 +2,9 @@ from getTranscript import MakeTranscript
 from storage_handler import write_json, readjson
 from CodeResponses import extractResponses, scoreResponses
 from IEEEHandler import removearticles, reordersentences, downloadIEEE
+from trialorder import ordertostring
 from pathlib import Path 
+import pandas as pd
 
 if __name__ == "__main__":
     file = "TessResponses" #Name of participants wav file
@@ -14,7 +16,7 @@ if __name__ == "__main__":
         filelist = [f"{file}.wav"]
         partresponses = MakeTranscript (filelist, folderpath) #make transcript
         write_json(f"{file}.json", partresponses) #Write transcript to json
-        ... 
+        return partresponses
 
     Partpath = Path(f"{file}.json") 
     folderpath = 'C:/Users/testarr/Documents/pythoncode/SpeechToText' #path to participant wav file 
@@ -22,7 +24,6 @@ if __name__ == "__main__":
         partresponses = readjson (f"{file}.json") #if it does read in the json
     else: 
         partresponses= getTranscripts(file, folderpath) #if not make the transcript 
-
 
     IEEEpath = Path(f"IEEEsentences.json") #Path to IEEEsentence json - this file is in the original order
     if IEEEpath.exists(): 
@@ -33,4 +34,5 @@ if __name__ == "__main__":
 
     IEEETargets = removearticles(IEEEsentences) #function to remove extra words from the IEEE sentences 
     justresponses =extractResponses(partresponses, speakernum) #Extract just the participants responses 
-    scoreResponses(IEEETargets, justresponses) 
+    keyOrder=ordertostring
+    scoreResponses(IEEETargets, justresponses, keyOrder) #Calculate score for each trial 
