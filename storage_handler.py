@@ -11,7 +11,6 @@ def write_json(path, content):
 
     ...
 
-
 def readjson(path):
     """This function checks to see if there is already a json file under the name. If so it reads the file and returns the content of the file."""
 
@@ -29,11 +28,17 @@ def readjson(path):
             return filecontent
     ...
 
-
-
 def readcsv (filename): 
     data = pd.read_csv(filename)
     IEEEorder = data['itemNum'].tolist()
-
-
     return (IEEEorder)
+
+
+
+def writecsv(filename, data): 
+    with open(filename, 'w', newline='') as csvfile:
+        fieldnames = ["IEEE Sentences Num", "Response", "Number of Targets", "Targets repeated", "Percent Correct"]
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(data)
+    ... 
