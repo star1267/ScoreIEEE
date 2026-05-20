@@ -3,8 +3,11 @@ from storage_handler import readjson
 from pathlib import Path
 
 def combineTrans(PNum): 
-    folderpath = 'R:\khri-mehta-lab\Experiments\Projects\Kappa Project\HHF_KappaYear2\ParticipantResponses'
-    mergetrans = []
+    #// TODO make this so that it isnt hard coded path 
+    folderpath = 'R:\khri-mehta-lab\Experiments\Projects\Kappa Project\HHF_KappaYear2\ParticipantResponses' #Where transcripts live 
+    mergetrans = [] #empty list 
+
+    #// TODO make this so that it is both of the sessions into one big transcript 
     os.chdir(folderpath) #path to participant wav file 
     for i in range(4): 
         blockNum = i +1 
@@ -14,8 +17,6 @@ def combineTrans(PNum):
             blocktrans = readjson (transcriptname) #if it does read in the json
         else: 
             print ("transcript does not exist")
-
-
         for trial in blocktrans: 
             mergetrans.append(trial)
 

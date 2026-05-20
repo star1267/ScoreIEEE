@@ -42,3 +42,16 @@ def writecsv(filename, data):
         writer.writeheader()
         writer.writerows(data)
     ... 
+
+def combinecsv(outputname, stimlist, PNum): 
+    b = pd.read_csv(outputname)
+    a = pd.read_csv(stimlist)
+    b = b.dropna(axis=1)
+    # Concatenate side-by-side (axis=1)
+    # Use join='outer' to keep all rows even if row counts differ
+    result = pd.concat([a, b], axis=1)
+
+    # Save to a new CSV
+    result.to_csv('101scoreandstim.csv', index=False)
+
+    ... 
