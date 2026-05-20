@@ -19,7 +19,11 @@ def downloadIEEE():
 def removearticles(IEEE): 
     targets ={}
     for key in IEEE: 
-        articles = { 'on', 'to', 'of', 'is', 'was', 'were',  'in', 'at', 'the', 'a', 'and' }
+        articles = { 'on', 'to', 'of', 'is', 'was', 'were',  'in', 'at', 'the', 'a', 'and', 'who', 'us', 'from' , 'it', 'out', 'you', 'him', 'will', 'he'
+                    'this', 'are' ,'than', 'but', 'us' }
+        
+        #// TODO sentence 4 THESE doesnt count 
+
         rest = []
         text = IEEE[key]
         for word in text.split():

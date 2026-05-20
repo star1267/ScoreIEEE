@@ -1,5 +1,7 @@
 import json
 import os
+import csv 
+import pandas as pd
 
 def write_json(path, content):
     """This creates a json file and write the dict to that file."""
@@ -26,3 +28,12 @@ def readjson(path):
             # returns the filecontent
             return filecontent
     ...
+
+
+
+def readcsv (filename): 
+    data = pd.read_csv(filename)
+    IEEEorder = data['itemNum'].tolist()
+
+
+    return (IEEEorder)

@@ -1,7 +1,10 @@
+from storage_handler import readcsv
+import os 
 
-##Need to load in the trial order will make random one for now 
-def ordertostring():
-    trialorder = [1,2,3,4,5,6,7]
+def ordertostring(csvname, path):
+    os.chdir(path)
+    trailorder = readcsv(csvname)
 
-    strings = list(map(str, trialorder))
+
+    strings = list(map(str, trailorder))
     return (strings)
