@@ -5,6 +5,4 @@ def ordertostring(csvname, path):
     os.chdir(path)
     trailorder = readcsv(csvname)
 
-
-    strings = list(map(str, trailorder))
-    return (strings)
+    return (trailorder)

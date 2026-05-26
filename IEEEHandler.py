@@ -16,27 +16,16 @@ def downloadIEEE():
     return (IEEE)
 
 
-def removearticles(IEEE): 
-    targets ={}
-    for key in IEEE: 
-        articles = { 'on', 'to', 'of', 'is', 'was', 'were',  'in', 'at', 'the', 'a', 'and', 'who', 'us', 'from' , 'it', 'out', 'you', 'him', 'will', 'he'
-                    'this', 'are' ,'than', 'but', 'us' }
-        
-        #// TODO sentence 4 THESE doesnt count 
+def getIEEEtargets():
+    #read in txt with bolded IEEE
+    IEEEsentence= []
 
-        rest = []
-        text = IEEE[key]
-        for word in text.split():
-            if word.lower() not in articles: 
-                rest.append(word)
-        targets.update({key: rest})
-    write_json(f"Targetwords.json", targets)
-    return (targets)
-
-
-def reordersentences(order): 
-    print (order)
-    ...
+    with open("BoldIEEETarget.txt") as file:
+        for line in file: 
+            words = line.split()
+            targetwords = [word for word in words if word[0].isupper()]
+            IEEEsentence.append(targetwords)
+    return (IEEEsentence)
 
 
 

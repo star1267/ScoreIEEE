@@ -10,11 +10,11 @@ def scoreResponses(IEEETranscript, justresponses, keyorder):
         total = 0 #counter for total words 
         response = justresponses[i]['text'] #response for loop
         key = keyorder[i] #key for loop
-        targetsentence = IEEETranscript[key] #get just the sentence
+        targetsentence = IEEETranscript[key-1] #get just the sentence
         for target in targetsentence: # loop through words in IEEE sentences
             clean_target = target.translate(str.maketrans('', '', string.punctuation))#get rid of puncuation
             total = total+1 #add to total for each for 
-            if clean_target in response: #If the target word is in the sentences 
+            if clean_target.lower() in response: #If the target word is in the sentences 
                 correct = correct+1 #add a point 
         percent = correct/total #calculate percent correct for this trial
         #list = [correct, total, percent, response, targetsentence] # number correct, total words, and percent saved to a list
