@@ -9,13 +9,13 @@ import os
 
 if __name__ == "__main__":
     #// TODO would be great if this could be a command input 
-    PNum = '102'
+    PNum = '101'
 
-    IEEEList = "IEEEsentences.json" #Name of IEEE sentences json #// TODO need to change this to just the list of target words 
     stimlist = f"{PNum}{'IEEEList'}.csv"
     outputname= f"{PNum}{'merged'}{'score'}.csv"
     structpath = r'R:\khri-mehta-lab\Experiments\Projects\Kappa Project\HHF_KappaYear2\StimListBackups' #// TODO change so that you dont have to change per computer
     folderpath = r'R:\khri-mehta-lab\Experiments\Projects\Kappa Project\HHF_KappaYear2\ParticipantResponses'
+    datafolder = r'R:\khri-mehta-lab\Experiments\Projects\Kappa Project\HHF_KappaYear2\DataOutputs'
 
     IEEETargets = getIEEEtargets()#Load IEEE Sentences 
     partresponses = combineTrans(PNum)
@@ -26,5 +26,6 @@ if __name__ == "__main__":
     checkpartlength(IEEETargets, partresponses, keyOrder)
     scoredict= scoreResponses(IEEETargets, partresponses, keyOrder) #Calculate score for each trial 
 
+    
     writecsv(outputname, scoredict) # Export CSV of responses
     combinecsv(outputname, stimlist, PNum) 

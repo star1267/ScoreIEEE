@@ -9,6 +9,8 @@ def scoreResponses(IEEETranscript, justresponses, keyorder):
         total = 0 #counter for total words 
         response = justresponses[i]['text'] #response for loop
         
+
+        #// TODO add back in code to run exta
         if i <= 719: #will score the first 720 response lines
             key = keyorder[i] #key for loop
             targetsentence = IEEETranscript[key-1] #get just the sentence
