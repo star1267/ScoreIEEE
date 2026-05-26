@@ -35,22 +35,22 @@ def readcsv (filename):
 
 
 
-def writecsv(filename, data): 
+def writecsv(filename, data, fieldnames): 
+    """Write data to a csv"""
     with open(filename, 'w', newline='') as csvfile:
-        fieldnames = ["IEEE Sentences Num", "Response", "Number of Targets", "Targets repeated", "Percent Correct"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(data)
     ... 
 
 def combinecsv(scorename, stimlist, PNum): 
-    b = pd.read_csv(scorename)
-    a = pd.read_csv(stimlist)
-    # Concatenate side-by-side (axis=1)
-    # Use join='outer' to keep all rows even if row counts differ
-    result = pd.concat([a, b], axis=1)
+    """Combing 2 csv into 1 by adding columns"""
+    score = pd.read_csv(scorename) #read in csv
+    stim = pd.read_csv(stimlist)
 
-    outputname = f"{PNum}{'scoreandstim'}.csv"
+    result = pd.concat([stim, score], axis=1) #concatonate
+
+    outputname = f"{PNum}{'scoreandstim'}.csv" #name
     # Save to a new CSV
     result.to_csv(outputname, index=False)
 

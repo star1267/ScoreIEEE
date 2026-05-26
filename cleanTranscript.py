@@ -1,12 +1,14 @@
 import string 
 
 def checkpartlength(IEEETranscript, justresponses, keyorder):
+    #// TODO What Happens if a participant gets a score of zero?? 
+    "score responses until it hits a response with a zero"
+    "This will help clean the transcripts"
     for i in range (len(justresponses)): #loop through IEEE sentences
         correct= 0 #counter for score
         total = 0 #counter for total words 
         response = justresponses[i]['text'] #response for loop
         
-        #will score the first 720 response lines
         key = keyorder[i] #key for loop
         targetsentence = IEEETranscript[key-1] #get just the sentence
         
@@ -18,7 +20,7 @@ def checkpartlength(IEEETranscript, justresponses, keyorder):
             
 
         percent = correct/total #calculate percent correct for this trial
-        if correct == 0: 
+        if correct == 0: #if the score is zero it will print out the target sentence and the response 
             print (response, i, i/90)
             print (targetsentence)
             return 

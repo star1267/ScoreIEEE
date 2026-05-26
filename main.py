@@ -11,21 +11,22 @@ if __name__ == "__main__":
     #// TODO would be great if this could be a command input 
     PNum = '101'
 
-    stimlist = f"{PNum}{'IEEEList'}.csv"
-    outputname= f"{PNum}{'merged'}{'score'}.csv"
-    structpath = r'R:\khri-mehta-lab\Experiments\Projects\Kappa Project\HHF_KappaYear2\StimListBackups' #// TODO change so that you dont have to change per computer
-    folderpath = r'R:\khri-mehta-lab\Experiments\Projects\Kappa Project\HHF_KappaYear2\ParticipantResponses'
-    datafolder = r'R:\khri-mehta-lab\Experiments\Projects\Kappa Project\HHF_KappaYear2\DataOutputs'
+    stimlist = f"{PNum}{'IEEEList'}.csv" #name of stim struct
+    outputname= f"{PNum}{'score'}.csv" #Name of output file 
+
+    #// TODO change so that you dont have to change per computer Need to understand how paths actually work 
+    structpath = r'R:\khri-mehta-lab\Experiments\Projects\Kappa Project\HHF_KappaYear2\StimListBackups' #path to stim stuct
+    transpath = r'R:\khri-mehta-lab\Experiments\Projects\Kappa Project\HHF_KappaYear2\ParticipantResponses'#path to transcript
 
     IEEETargets = getIEEEtargets()#Load IEEE Sentences 
-    partresponses = combineTrans(PNum)
+    partresponses = combineTrans(PNum, transpath) #combine 4 transcripts into one 
 
-    os.chdir(structpath) #path to participant wav file 
     keyOrder = ordertostring(stimlist, structpath) #get the order of trials as strings to input as keys 
 
-    checkpartlength(IEEETargets, partresponses, keyOrder)
+    checkpartlength(IEEETargets, partresponses, keyOrder) #Check if the transcript has too many lines
     scoredict= scoreResponses(IEEETargets, partresponses, keyOrder) #Calculate score for each trial 
 
-    
-    writecsv(outputname, scoredict) # Export CSV of responses
-    combinecsv(outputname, stimlist, PNum) 
+
+    fieldnames = ["IEEE Sentences Num", "Response", "Number of Targets", "Targets repeated", "Percent Correct"] #headers for csv
+    writecsv(outputname, scoredict, fieldnames) # Export CSV of responses
+    combinecsv(outputname, stimlist, PNum) #combine struct and scores to one csv
