@@ -8,12 +8,8 @@ def scoreResponses(IEEETranscript, justresponses, keyorder):
         correct= 0 #counter for score
         total = 0 #counter for total words 
         response = justresponses[i]['text'] #response for loop
-
-
-        #// TODO make it so that it keeps saving the sentences to the excel document 
-            #Skip key after key 
         
-        if i <= 719: 
+        if i <= 719: #will score the first 720 response lines
             key = keyorder[i] #key for loop
             targetsentence = IEEETranscript[key-1] #get just the sentence
             for target in targetsentence: # loop through words in IEEE sentences
@@ -21,6 +17,7 @@ def scoreResponses(IEEETranscript, justresponses, keyorder):
                 total = total+1 #add to total for each for 
                 if clean_target.lower() in response: #If the target word is in the sentences 
                     correct = correct+1 #add a point 
+
             percent = correct/total #calculate percent correct for this trial
 
             dict = { "IEEE Sentences Num": key, 
@@ -40,10 +37,7 @@ def scoreResponses(IEEETranscript, justresponses, keyorder):
 
         #fieldnames = ["IEEE sentences", "Number of Targets", "Targets repeated", "Percent Correct"]
 
-
-
         list.append (dict) 
-        
-  #// TODO Todo save scores in a way that is easier to run analysis on 
+
 
     return (list)
