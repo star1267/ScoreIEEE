@@ -1,4 +1,3 @@
-
 from storage_handler import writecsv, combinecsv
 from CodeResponses import scoreResponses
 from IEEEHandler import getIEEEtargets
@@ -9,12 +8,15 @@ import os
 
 if __name__ == "__main__":
     #// TODO would be great if this could be a command input 
+
     PNum = '101'
 
     stimlist = f"{PNum}{'IEEEList'}.csv" #name of stim struct
     outputname= f"{PNum}{'score'}.csv" #Name of output file 
 
     #// TODO change so that you dont have to change per computer Need to understand how paths actually work 
+    #This needs to be changed to a relative path 
+    
     structpath = r'R:\khri-mehta-lab\Experiments\Projects\Kappa Project\HHF_KappaYear2\StimListBackups' #path to stim stuct
     transpath = r'R:\khri-mehta-lab\Experiments\Projects\Kappa Project\HHF_KappaYear2\ParticipantResponses'#path to transcript
 

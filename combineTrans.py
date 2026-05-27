@@ -3,6 +3,9 @@ from storage_handler import readjson, write_json
 from pathlib import Path
 
 def combineTrans(PNum, folderpath): 
+    #// TODO Make this so that it does not matter how many transcripts there are 
+
+
     mergetrans = [] #empty list 
 
     os.chdir(folderpath) #path to participant wav file  #// TODO Change this so that it isnt hard coded 
