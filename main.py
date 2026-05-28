@@ -8,8 +8,9 @@ from pathlib import Path
 import os 
 
 if __name__ == "__main__":
-    #// TODO would be great if this could be a command input 
-    PNum = '101'
+
+    PNum = input('What is the participant number?') #input participant number
+    #PNum = '102'
 
     stimlist = f"{PNum}{'IEEEList'}.csv" #name of stim struct
     outputname= f"{PNum}{'score'}.csv" #Name of output file 
