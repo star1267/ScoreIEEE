@@ -35,7 +35,8 @@ def readcsv (filename):
 
 
 
-def writecsv(filename, data, fieldnames): 
+def writecsv(filename, data, fieldnames, outputpath): 
+    os.chdir(outputpath)
     """Write data to a csv"""
     with open(filename, 'w', newline='') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -43,11 +44,12 @@ def writecsv(filename, data, fieldnames):
         writer.writerows(data)
     ... 
 
-def combinecsv(scorename, stimlist, PNum): 
+def combinecsv(scorename, stimlist, PNum, outputpath, strucpath): 
     """Combing 2 csv into 1 by adding columns"""
     score = pd.read_csv(scorename) #read in csv
+    os.chdir(strucpath)
     stim = pd.read_csv(stimlist)
-
+    os.chdir(outputpath)
     result = pd.concat([stim, score], axis=1) #concatonate
 
     outputname = f"{PNum}{'scoreandstim'}.csv" #name
