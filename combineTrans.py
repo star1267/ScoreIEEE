@@ -4,7 +4,6 @@ from pathlib import Path
 import glob 
 
 def combineTrans(PNum, folderpath): 
-    #// TODO Make this so that it does not matter how many transcripts there are 
 
     mergetrans = [] #empty list 
     session1= [] #Empty list of files with session one
