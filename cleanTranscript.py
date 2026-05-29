@@ -17,10 +17,11 @@ def checkpartlength(IEEETranscript, justresponses, keyorder):
             if clean_target.lower() in response: #If the target word is in the sentences 
                 correct = correct+1 #add a point 
             
-
+        
         percent = correct/total #calculate percent correct for this trial
-        if correct == 0: #if the score is zero it will print out the target sentence and the response 
-            print (len(response))
-            print (response, i)
-            print (targetsentence)
-            return 
+        if correct == 0 : #if the score is zero it will print out the target sentence and the response 
+            if len(justresponses) >720: 
+                print ("At least one sentence scored 0 points. Please check transcripts")
+                print ("There are too many responses in transcript. Responses:" ,len(justresponses))
+                print (response, i, targetsentence)
+                return 
