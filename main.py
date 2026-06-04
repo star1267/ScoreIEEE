@@ -7,11 +7,19 @@ from cleanTranscript import checkpartlength
 from pathlib import Path
 import os 
 
-if __name__ == "__main__":
+#How to set up project
+    #1. uv add -r requirments 
+    #2. run code and it will make new folders 
+        # 'StimList'
+        # 'Outputs'
+        # "cleanTranscripts" and throw and error
+    #3. Add the transcripts you want to transcribe to the "cleanTranscripts" folder 
+    #4. Add StimList csv files to StimList folder 
+    #5. Run again 
 
-    #PNum = input('What is the participant number?')
-     #input participant number
-    PNum = '101'
+if __name__ == "__main__":
+    #input participant number
+    PNum = input('What is the participant number?')
 
     stimlist = f"{PNum}{'IEEEList'}.csv" #name of stim struct
     outputname= f"{PNum}{'score'}.csv" #Name of output file 
@@ -21,22 +29,23 @@ if __name__ == "__main__":
     transpath  = os.path.join(currentDir, 'cleanTranscripts') #Path to folder in directory with clean transcripts 
     outputpath = os.path.join(currentDir, 'Outputs') #Path to a folder for outputs
 
-    try:
-        os.mkdir(transpath) #make "cleanTranscripts" folder 
-        print(f"Directory '{transpath}' created successfully.")
-    except FileExistsError:
-        print(f"Directory '{transpath}' already exists.")
+
     try: 
         os.mkdir(structpath) #Make 'StimList' folder
         print(f"Directory '{structpath}' created successfully.")
     except:
         print(f"Directory '{structpath}' already exists.")
-    
     try:
         os.mkdir(outputpath) #Make "output" folder
         print(f"Directory '{outputpath}' created successfully.")
     except: 
         print(f"Directory '{outputpath}' already exists.")
+    try:
+        os.mkdir(transpath) #make "cleanTranscripts" folder 
+        print(f"Directory '{transpath}' created successfully.")
+        raise ValueError("transcript folder made now add clean transcripts")
+    except FileExistsError:
+        print(f"Directory '{transpath}' already exists.")
 
 
     IEEETargets = getIEEEtargets()#Load IEEE Sentences 
