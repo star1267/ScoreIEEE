@@ -9,8 +9,9 @@ import os
 
 if __name__ == "__main__":
 
-    PNum = input('What is the participant number?') #input participant number
-    #PNum = '102'
+    #PNum = input('What is the participant number?')
+     #input participant number
+    PNum = '101'
 
     stimlist = f"{PNum}{'IEEEList'}.csv" #name of stim struct
     outputname= f"{PNum}{'score'}.csv" #Name of output file 
