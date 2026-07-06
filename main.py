@@ -21,7 +21,7 @@ if __name__ == "__main__":
     #input participant number
     PNum = input('What is the participant number?')
 
-    stimlist = f"{PNum}{'IEEEList'}.csv" #name of stim struct
+    stimlist = f"{'P'}{PNum}{'_stimList'}.csv" #name of stim struct
     outputname= f"{PNum}{'score'}.csv" #Name of output file 
 
     currentDir = os.getcwd()
